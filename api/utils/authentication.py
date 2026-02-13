@@ -6,7 +6,7 @@ from jose import jwt
 JWT_SECRET = os.getenv("JWT_SECRET")
 if not JWT_SECRET:
     raise RuntimeError("JWT_SECRET environment variable must be set")
-    
+
 JWT_ALGORITHM = "HS256"
 TOKEN_DURATION_MINUTES = 60
 REFRESH_TOKEN_DURATION_DAYS = 7
@@ -30,6 +30,8 @@ def create_refresh_token(data: dict) -> str:
     data_to_encode.update({"exp": expiration})
     return jwt.encode(data_to_encode, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
+# I added this function for future use when we want to decode the 
+# token to get the user information
 def decode_access_token(token: str) -> dict:
     try:
         return jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
