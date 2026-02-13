@@ -4,6 +4,7 @@ class CourseWithScore(BaseModel):
     course_id: int
     course_code: str
     course_name: str
+    period: str
     score: int | None = None
 
 class LoginPayload(BaseModel):

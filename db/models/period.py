@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, Date, UniqueConstraint
+from sqlalchemy.orm import relationship
 from db.models.base import Base
 
 class Period(Base):
@@ -8,4 +9,6 @@ class Period(Base):
     label = Column(String, nullable=False)
     start_date = Column(Date, nullable=False)
     end_date = Column(Date, nullable=False)
+
+    courses = relationship("Course", back_populates="period")
     
