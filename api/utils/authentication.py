@@ -3,7 +3,10 @@ import os
 from passlib.context import CryptContext
 from jose import jwt
 
-JWT_SECRET = os.getenv("JWT_SECRET", "change-me")
+JWT_SECRET = os.getenv("JWT_SECRET")
+if not JWT_SECRET:
+    raise RuntimeError("JWT_SECRET environment variable must be set")
+    
 JWT_ALGORITHM = "HS256"
 TOKEN_DURATION_MINUTES = 60
 REFRESH_TOKEN_DURATION_DAYS = 7
